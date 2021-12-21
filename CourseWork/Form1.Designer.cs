@@ -121,7 +121,7 @@ namespace CourseWork
             // 
             this.tbGraviton.LargeChange = 0;
             this.tbGraviton.Location = new System.Drawing.Point(980, 937);
-            this.tbGraviton.Maximum = 350;
+            this.tbGraviton.Maximum = 400;
             this.tbGraviton.Name = "tbGraviton";
             this.tbGraviton.Size = new System.Drawing.Size(225, 45);
             this.tbGraviton.TabIndex = 7;

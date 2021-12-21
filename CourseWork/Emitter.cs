@@ -16,7 +16,7 @@ namespace CourseWork
         public int X; // координата X центра эмиттера, будем ее использовать вместо MousePositionX
         public int Y; // соответствующая координата Y 
         public int Direction = 0; // вектор направления в градусах куда сыпет эмиттер
-        public int Spreading = 360; // разброс частиц относительно Direction
+        public int Spreading = 0; // разброс частиц относительно Direction
         public int SpeedMin = 1; // начальная минимальная скорость движения частицы
         public int SpeedMax = 10; // начальная максимальная скорость движения частицы
         public int RadiusMin = 2; // минимальный радиус частицы
@@ -63,6 +63,9 @@ namespace CourseWork
                 }
                 else
                 {
+                    particle.X += particle.SpeedX;
+                    particle.Y += particle.SpeedY;
+
                     // каждая точка по-своему воздействует на вектор скорости
                     foreach (var point in impactPoints)
                     {
@@ -73,8 +76,7 @@ namespace CourseWork
                     particle.SpeedX += GravitationX;
                     particle.SpeedY += GravitationY;
 
-                    particle.X += particle.SpeedX;
-                    particle.Y += particle.SpeedY;
+                    
                 }
             }
 
