@@ -12,35 +12,47 @@ namespace CourseWork
 {
     public partial class Form1 : Form
     {
-        Emitter emitter;
-
-        bool dots = false;
-
         List<Particle> particles = new List<Particle>();//пустой список частиц
+
+        List<Emitter> emitters = new List<Emitter>();
+        Emitter emitter; //поле для эмиттера
+
+
         public Form1()
         {
             InitializeComponent();
             picDisplay.Image = new Bitmap(picDisplay.Width, picDisplay.Height);// привязка изображения
 
-            emitter = new TopEmitter
+            this.emitter = new Emitter // создаю эмиттер и привязываю его к полю emitter
             {
-                Width = picDisplay.Width,
-                GravitationY = 0.25f
+                Direction = 0,
+                Spreading = 10,
+                SpeedMin = 10,
+                SpeedMax = 10,
+                ColorFrom = Color.Gold,
+                ColorTo = Color.FromArgb(0, Color.Red),
+                ParticlesPerTick = 10,
+                X = picDisplay.Width / 2,
+                Y = picDisplay.Height / 2,
             };
 
-                // гравитон
-                emitter.impactPoints.Add(new GravityPoint
+            emitters.Add(this.emitter); //добавляю в список emitters, чтобы он рендерился и обновлялся
+
+            
+            // гравитон
+            emitter.impactPoints.Add(new GravityPoint
                 {
                     X = (float)(picDisplay.Width * 0.25),
                     Y = picDisplay.Height / 2
                 });
-
+            /*
                 // в центре антигравитон
                 emitter.impactPoints.Add(new AntiGravityPoint
                 {
                     X = picDisplay.Width / 2,
                     Y = picDisplay.Height / 2
                 });
+            */
 
                 // снова гравитон
                 emitter.impactPoints.Add(new GravityPoint
@@ -48,7 +60,7 @@ namespace CourseWork
                     X = (float)(picDisplay.Width * 0.75),
                     Y = picDisplay.Height / 2
                 });
-
+            
 
         }
 
@@ -72,9 +84,7 @@ namespace CourseWork
 
         private void picDisplay_MouseMove(object sender, MouseEventArgs e)
         {
-            //заносим положение мыши в переменные для хранения положения мыши
-            emitter.MousePositionX = e.X;
-            emitter.MousePositionY = e.Y;
+            
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -85,5 +95,28 @@ namespace CourseWork
             { emitter.GravitationY = 0; }
         }
 
+        private void tbDirection_Scroll(object sender, EventArgs e)
+        {
+            emitter.Direction = tbDirection.Value; // направлению эмиттера присваиваем значение ползунка 
+            lblDirection.Text = $"{tbDirection.Value}°"; //вывод значения
+        }
+
+        private void tbSpreading_Scroll(object sender, EventArgs e)
+        {
+            emitter.Spreading = tbSpreading.Value; // разбросу присваиваем значение ползунка 
+            lblSpreading.Text = $"{tbSpreading.Value}°";//вывод значения
+        }
+
+        private void tbGravion_Scroll(object sender, EventArgs e)
+        {
+            foreach (var p in emitter.impactPoints)
+            {
+                if (p is GravityPoint) // так как impactPoints не обязательно содержит поле Power, надо проверить на тип 
+                {
+                    // если гравитон то меняем силу
+                    (p as GravityPoint).Power = tbGraviton.Value;
+                }
+            }
+        }
     }
 }
