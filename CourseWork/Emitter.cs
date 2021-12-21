@@ -9,6 +9,7 @@ namespace CourseWork
 {
     public class Emitter
     {
+        public int ParticlesCount = 500;//кол-во частиц
         List<Particle> particles = new List<Particle>();
         public int MousePositionX;
         public int MousePositionY;
@@ -18,8 +19,7 @@ namespace CourseWork
 
         public List<IImpactPoint> impactPoints = new List<IImpactPoint>(); // тут буду хранится точки притяжения
 
-        //функция обновления состояния системы
-        public void UpdateState()
+        public void UpdateState()//функция обновления состояния системы
         {
             foreach (var particle in particles)
             {
@@ -27,20 +27,7 @@ namespace CourseWork
 
                 if (particle.Life < 0)// если здоровье кончилось
                 {
-                    particle.Life = 20 + Particle.rnd.Next(100);// восстанавливаю здоровье
-
-                    // перемещаю частицу в место положения курсора
-                    particle.X = MousePositionX;
-                    particle.Y = MousePositionY;
-
-                    //сброс состояния частицы
-                    var direction = (double)Particle.rnd.Next(360);
-                    var speed = 1 + Particle.rnd.Next(10);
-
-                    particle.SpeedX = (float)(Math.Cos(direction / 180 * Math.PI) * speed);
-                    particle.SpeedY = -(float)(Math.Sin(direction / 180 * Math.PI) * speed);
-
-                    particle.Radius = 2 + Particle.rnd.Next(10);// рандомный размер частицы
+                    ResetParticle(particle);
                 }
                 else
                 {
@@ -63,24 +50,24 @@ namespace CourseWork
             // генерирую не более 10 штук за тик
             for (var i = 0; i < 10; ++i)
             {
-                if (particles.Count < 500) // пока частиц меньше 500 генерируем новые
+                if (particles.Count < ParticlesCount) // пока частиц меньше максимального числа генерируем новые
                 {
                     var particle = new ParticleColorful();
                     particle.FromColor = Color.Yellow;
                     particle.ToColor = Color.FromArgb(0, Color.Magenta);
-                    particle.X = MousePositionX;
-                    particle.Y = MousePositionY;
+
+                    ResetParticle(particle);
                     particles.Add(particle);
                 }
                 else
                 {
-                    break; // а если частиц уже 500 штук, то ничего не генерирую
+                    break;
                 }
             }
 
         }
 
-        // функция рендеринга
+        
         public void Render(Graphics g)
         {
             // отрисовка частиц
@@ -94,6 +81,42 @@ namespace CourseWork
             {
                 point.Render(g);
             }
+        }// функция рендеринга
+
+
+        public virtual void ResetParticle(Particle particle)// момент генерации частицы и сброса ее состояния, когда жизнь кончается
+        {
+            particle.Life = 20 + Particle.rnd.Next(100);// восстанавливаю здоровье
+            // перемещаю частицу в место положения курсора
+            particle.X = MousePositionX;
+            particle.Y = MousePositionY;
+            //сброс состояния частицы
+            var direction = (double)Particle.rnd.Next(360);
+            var speed = 1 + Particle.rnd.Next(10);
+
+            particle.SpeedX = (float)(Math.Cos(direction / 180 * Math.PI) * speed);
+            particle.SpeedY = -(float)(Math.Sin(direction / 180 * Math.PI) * speed);
+
+            particle.Radius = 2 + Particle.rnd.Next(10);// рандомный размер частицы
         }
     }
+
+
+    public class TopEmitter : Emitter
+    {
+        public int Width; // длина экрана
+
+        public override void ResetParticle(Particle particle)
+        {
+            base.ResetParticle(particle); // вызываем базовый сброс частицы, там жизнь переопределяется и все такое
+
+            //параметры движения
+            particle.X = Particle.rnd.Next(Width); // позиция X -- произвольная точка от 0 до Width
+            particle.Y = 0;  // ноль -- это верх экрана 
+
+            particle.SpeedY = 1; // падаем вниз по умолчанию
+            particle.SpeedX = Particle.rnd.Next(-2, 2); // разброс влево и вправа у частиц 
+        }
+    }
+
 }

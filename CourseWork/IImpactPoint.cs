@@ -20,7 +20,7 @@ namespace CourseWork
         public void Render(Graphics g)
         {
             g.FillEllipse(
-                    new SolidBrush(Color.Red),
+                    new SolidBrush(Color.LightPink),
                     X - 5,
                     Y - 5,
                     10,
