@@ -12,82 +12,44 @@ namespace CourseWork
 {
     public partial class Form1 : Form
     {
+        Emitter emitter = new Emitter();
+
         List<Particle> particles = new List<Particle>();//пустой список частиц
         public Form1()
         {
             InitializeComponent();
             picDisplay.Image = new Bitmap(picDisplay.Width, picDisplay.Height);// привязка изображения
-        }
 
-        // добавил функцию обновления состояния системы
-        private void UpdateState()
-        {
-            foreach (var particle in particles)
+            // гравитон
+            emitter.impactPoints.Add(new GravityPoint
             {
-                particle.Life -= 1;// уменьшаю здоровье
-                                    
-                if (particle.Life < 0)// если здоровье кончилось
-                {
-                    particle.Life = 20 + Particle.rnd.Next(100);// восстанавливаю здоровье
+                X = (float)(picDisplay.Width * 0.25),
+                Y = picDisplay.Height / 2
+            });
 
-                    // перемещаю частицу в место положения курсора
-                    particle.X = MousePositionX;
-                    particle.Y = MousePositionY;
-
-                    //сброс состояния частицы
-                    var direction = (double)Particle.rnd.Next(360);
-                    var speed = 1 + Particle.rnd.Next(10);
-
-                    particle.SpeedX = (float)(Math.Cos(direction / 180 * Math.PI) * speed);
-                    particle.SpeedY = -(float)(Math.Sin(direction / 180 * Math.PI) * speed);
-
-                    particle.Radius = 2 + Particle.rnd.Next(10);// рандомный размер частицы
-                }
-                else {
-                    particle.X += particle.SpeedX;
-                    particle.Y += particle.SpeedY;
-                }
-            }
-
-            // генерация частиц
-            // генерирую не более 10 штук за тик
-            for (var i = 0; i < 10; ++i)
+            // в центре антигравитон
+            emitter.impactPoints.Add(new AntiGravityPoint
             {
-                if (particles.Count < 500) // пока частиц меньше 500 генерируем новые
-                {
-                    var particle = new ParticleColorful();
-                    particle.FromColor = Color.Yellow;
-                    particle.ToColor = Color.FromArgb(0, Color.Magenta);
-                    particle.X = MousePositionX;
-                    particle.Y = MousePositionY;
-                    particles.Add(particle);
-                }
-                else
-                {
-                    break; // а если частиц уже 500 штук, то ничего не генерирую
-                }
-            }
+                X = picDisplay.Width / 2,
+                Y = picDisplay.Height / 2
+            });
 
-        }
-
-        // функция рендеринга
-        private void Render(Graphics g)
-        {
-            // утащили сюда отрисовку частиц
-            foreach (var particle in particles)
+            // снова гравитон
+            emitter.impactPoints.Add(new GravityPoint
             {
-                particle.Draw(g);
-            }
+                X = (float)(picDisplay.Width * 0.75),
+                Y = picDisplay.Height / 2
+            });
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            UpdateState(); // каждый тик обновляем систему
+            emitter.UpdateState(); // каждый тик обновляем систему
 
             using (var g = Graphics.FromImage(picDisplay.Image))
             {
                 g.Clear(Color.Black); // очистка picDisplay
-                Render(g); // рендерим систему
+                emitter.Render(g); // рендерим систему
             }
 
             picDisplay.Invalidate();//обновление picDisplay
@@ -101,8 +63,16 @@ namespace CourseWork
         private void picDisplay_MouseMove(object sender, MouseEventArgs e)
         {
             //заносим положение мыши в переменные для хранения положения мыши
-            MousePositionX = e.X;
-            MousePositionY = e.Y;
+            emitter.MousePositionX = e.X;
+            emitter.MousePositionY = e.Y;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (emitter.GravitationY == 0)
+            { emitter.GravitationY = 1; }
+            else
+            { emitter.GravitationY = 0; }
         }
     }
 }
