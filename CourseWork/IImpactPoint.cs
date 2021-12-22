@@ -16,7 +16,7 @@ namespace CourseWork
         // притягивать или отталкивать
         public abstract void ImpactParticle(Particle particle);
 
-        // базовый класс для отрисовки точечки
+        // базовый класс для отрисовки
         public virtual void Render(Graphics g)
         {
             g.FillEllipse(

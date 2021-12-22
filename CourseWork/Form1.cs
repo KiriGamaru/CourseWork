@@ -12,11 +12,14 @@ namespace CourseWork
 {
     public partial class Form1 : Form
     {
-        List<Particle> particles = new List<Particle>();//пустой список частиц
-
         List<Emitter> emitters = new List<Emitter>();
         Emitter emitter; //поле для эмиттера
 
+        GravityPoint point1; //поле под первую точку
+        GravityPoint point2; //поле под вторую точку
+
+        InPortal portal1;//поле под первый портал
+        OutPortal portal2;//поле под второй портал
 
         public Form1()
         {
@@ -29,8 +32,8 @@ namespace CourseWork
                 Spreading = 10,
                 SpeedMin = 10,
                 SpeedMax = 10,
-                ColorFrom = Color.Gold,
-                ColorTo = Color.FromArgb(0, Color.Red),
+                ColorFrom = Color.White,
+                ColorTo = Color.FromArgb(0, Color.Black),
                 ParticlesPerTick = 10,
                 X = picDisplay.Width / 2,
                 Y = picDisplay.Height / 2,
@@ -38,29 +41,43 @@ namespace CourseWork
 
             emitters.Add(this.emitter); //добавляю в список emitters, чтобы он рендерился и обновлялся
 
-            
-            // гравитон
-            emitter.impactPoints.Add(new GravityPoint
-                {
-                    X = (float)(picDisplay.Width * 0.25),
-                    Y = picDisplay.Height / 2
-                });
-            /*
-                // в центре антигравитон
+
+           
+            // гравитоны
+            point1 = new GravityPoint // привязываем гравитоны к полям
+            {
+                X = (float)(picDisplay.Width * 0.25),
+                Y = picDisplay.Height / 2
+            };
+            point2 = new GravityPoint
+            {
+                X = (float)(picDisplay.Width * 0.75),
+                Y = picDisplay.Height / 2
+            };
+
+            // привязываем поля к эмиттеру
+            emitter.impactPoints.Add(point1);
+            emitter.impactPoints.Add(point2);
+
+            /*________________________________________________________
+                // антигравитон в центре
                 emitter.impactPoints.Add(new AntiGravityPoint
                 {
                     X = picDisplay.Width / 2,
                     Y = picDisplay.Height / 2
                 });
-            */
+            ________________________________________________________*/
 
-                // снова гравитон
-                emitter.impactPoints.Add(new GravityPoint
-                {
-                    X = (float)(picDisplay.Width * 0.75),
-                    Y = picDisplay.Height / 2
-                });
-            
+
+            // привязываем порталы к полям
+            portal1 = new InPortal
+            {
+                X = MousePositionX,
+                Y = MousePositionY
+            };
+
+            // привязываем поля к эмиттеру
+            emitter.portals.Add(portal1);
 
         }
 
@@ -77,15 +94,6 @@ namespace CourseWork
             picDisplay.Invalidate();//обновление picDisplay
         }
 
-
-        // добавляем переменные для хранения положения мыши
-        private int MousePositionX = 0;
-        private int MousePositionY = 0;
-
-        private void picDisplay_MouseMove(object sender, MouseEventArgs e)
-        {
-            
-        }
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -109,14 +117,18 @@ namespace CourseWork
 
         private void tbGravion_Scroll(object sender, EventArgs e)
         {
-            foreach (var p in emitter.impactPoints)
-            {
-                if (p is GravityPoint) // так как impactPoints не обязательно содержит поле Power, надо проверить на тип 
-                {
-                    // если гравитон то меняем силу
-                    (p as GravityPoint).Power = tbGraviton.Value;
-                }
-            }
+            point1.Power = tbGraviton.Value;
         }
+
+        private void tbGraviton2_Scroll(object sender, EventArgs e)
+        {
+            point2.Power = tbGraviton2.Value;
+        }
+
+
+        // добавляем переменные для хранения положения мыши
+        private int MousePositionX = 0;
+        private int MousePositionY = 0;
+
     }
 }

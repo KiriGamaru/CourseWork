@@ -39,10 +39,12 @@ namespace CourseWork
             this.tbSpreading = new System.Windows.Forms.TrackBar();
             this.lblSpreading = new System.Windows.Forms.Label();
             this.tbGraviton = new System.Windows.Forms.TrackBar();
+            this.tbGraviton2 = new System.Windows.Forms.TrackBar();
             ((System.ComponentModel.ISupportInitialize)(this.picDisplay)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbDirection)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbSpreading)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbGraviton)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbGraviton2)).BeginInit();
             this.SuspendLayout();
             // 
             // picDisplay
@@ -52,7 +54,6 @@ namespace CourseWork
             this.picDisplay.Size = new System.Drawing.Size(1503, 932);
             this.picDisplay.TabIndex = 0;
             this.picDisplay.TabStop = false;
-            this.picDisplay.MouseMove += new System.Windows.Forms.MouseEventHandler(this.picDisplay_MouseMove);
             // 
             // timer1
             // 
@@ -101,10 +102,10 @@ namespace CourseWork
             // tbSpreading
             // 
             this.tbSpreading.LargeChange = 0;
-            this.tbSpreading.Location = new System.Drawing.Point(240, 937);
+            this.tbSpreading.Location = new System.Drawing.Point(236, 937);
             this.tbSpreading.Maximum = 180;
             this.tbSpreading.Name = "tbSpreading";
-            this.tbSpreading.Size = new System.Drawing.Size(261, 45);
+            this.tbSpreading.Size = new System.Drawing.Size(265, 45);
             this.tbSpreading.TabIndex = 5;
             this.tbSpreading.Scroll += new System.EventHandler(this.tbSpreading_Scroll);
             // 
@@ -121,11 +122,21 @@ namespace CourseWork
             // 
             this.tbGraviton.LargeChange = 0;
             this.tbGraviton.Location = new System.Drawing.Point(980, 937);
-            this.tbGraviton.Maximum = 400;
+            this.tbGraviton.Maximum = 500;
             this.tbGraviton.Name = "tbGraviton";
-            this.tbGraviton.Size = new System.Drawing.Size(225, 45);
+            this.tbGraviton.Size = new System.Drawing.Size(185, 45);
             this.tbGraviton.TabIndex = 7;
             this.tbGraviton.Scroll += new System.EventHandler(this.tbGravion_Scroll);
+            // 
+            // tbGraviton2
+            // 
+            this.tbGraviton2.LargeChange = 0;
+            this.tbGraviton2.Location = new System.Drawing.Point(1171, 937);
+            this.tbGraviton2.Maximum = 500;
+            this.tbGraviton2.Name = "tbGraviton2";
+            this.tbGraviton2.Size = new System.Drawing.Size(185, 45);
+            this.tbGraviton2.TabIndex = 8;
+            this.tbGraviton2.Scroll += new System.EventHandler(this.tbGraviton2_Scroll);
             // 
             // Form1
             // 
@@ -133,6 +144,7 @@ namespace CourseWork
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.ClientSize = new System.Drawing.Size(1500, 994);
+            this.Controls.Add(this.tbGraviton2);
             this.Controls.Add(this.tbGraviton);
             this.Controls.Add(this.lblSpreading);
             this.Controls.Add(this.tbSpreading);
@@ -147,6 +159,7 @@ namespace CourseWork
             ((System.ComponentModel.ISupportInitialize)(this.tbDirection)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbSpreading)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbGraviton)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbGraviton2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -163,6 +176,7 @@ namespace CourseWork
         private System.Windows.Forms.TrackBar tbSpreading;
         private System.Windows.Forms.Label lblSpreading;
         private System.Windows.Forms.TrackBar tbGraviton;
+        private System.Windows.Forms.TrackBar tbGraviton2;
     }
 }
 

@@ -34,8 +34,11 @@ namespace CourseWork
         public float GravitationX = 0;
         public float GravitationY = 0; // пусть гравитация будет силой один пиксель за такт, нам хватит
 
+
+
         public List<IImpactPoint> impactPoints = new List<IImpactPoint>(); // тут буду хранится точки притяжения
 
+        public List<Portal> portals = new List<Portal>();//а тут порталы
 
         public virtual Particle CreateParticle()//метод для генерации частицы
         {
@@ -91,7 +94,7 @@ namespace CourseWork
 
         }
 
-        
+        // функция рендеринга
         public void Render(Graphics g)
         {
             // отрисовка частиц
@@ -100,12 +103,18 @@ namespace CourseWork
                 particle.Draw(g);
             }
 
-            //точки притяжения - розовые кружочки
+            //точки притяжения
             foreach (var point in impactPoints)
             {
                 point.Render(g);
             }
-        }// функция рендеринга
+
+            // порталы
+            foreach (var portal in portals)
+            {
+                portal.Render(g);
+            }
+        }
 
 
         public virtual void ResetParticle(Particle particle)// момент генерации частицы и сброса ее состояния, когда жизнь кончается

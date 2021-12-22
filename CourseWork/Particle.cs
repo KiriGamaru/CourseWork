@@ -69,7 +69,7 @@ namespace CourseWork
             );
         }
 
-        // ну и отрисовку перепишем
+        //отрисовка
         public override void Draw(Graphics g)
         {
             float k = Math.Min(1f, Life / 100);
