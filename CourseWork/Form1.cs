@@ -15,8 +15,8 @@ namespace CourseWork
         List<Emitter> emitters = new List<Emitter>();
         Emitter emitter; //поле для эмиттера
 
-        GravityPoint point1; //поле под первую точку
-        GravityPoint point2; //поле под вторую точку
+        AntiGravityPoint point1; //поле под антигравитон
+        GravityPoint point2; //поле под гравитон
 
         InPortal portal1;//поле под первый портал
         OutPortal portal2;//поле под второй портал
@@ -42,13 +42,14 @@ namespace CourseWork
             emitters.Add(this.emitter); //добавляю в список emitters, чтобы он рендерился и обновлялся
 
 
-           
-            // гравитоны
-            point1 = new GravityPoint // привязываем гравитоны к полям
+
+            // антигравитон
+            point1 = new AntiGravityPoint // привязываем гравитоны к полям
             {
                 X = (float)(picDisplay.Width * 0.25),
                 Y = picDisplay.Height / 2
             };
+            //гравитон
             point2 = new GravityPoint
             {
                 X = (float)(picDisplay.Width * 0.75),
@@ -139,8 +140,8 @@ namespace CourseWork
                 emitter.MousePositionY = e.Y;
             }
             // а тут передаем положение мыши, в положение гравитона
-            point2.X = e.X;
-            point2.Y = e.Y;
+            point1.X = e.X;
+            point1.Y = e.Y;
         }
 
         private void picDisplay_MouseClick(object sender, MouseEventArgs e)
@@ -166,6 +167,14 @@ namespace CourseWork
         {
             portal1.Deam = tbPortalSize.Value;
             portal2.Deam = tbPortalSize.Value;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (colorDialog1.ShowDialog() == DialogResult.OK)
+            {
+                button2.BackColor = colorDialog1.Color;
+            }
         }
     }
 }

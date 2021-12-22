@@ -25,13 +25,13 @@ namespace CourseWork
 
     public class InPortal : Portal
     {
-        public int Deam = 100;
+        public int Deam = 0;
 
         public override void Render(Graphics g)
         {
             // окружность с диаметром равным Deam
             g.DrawEllipse(
-                   new Pen(Color.Red),
+                   new Pen(Color.White),
                    X - Deam / 2,
                    Y - Deam / 2,
                    Deam,
@@ -58,13 +58,13 @@ namespace CourseWork
 
     public class OutPortal : Portal
     {
-        public int Deam = 100;
-
+        public int Deam = 0;
+        public Color color = Color.White;
         public override void Render(Graphics g)
         {
             // окружность с диаметром равным Deam
             g.DrawEllipse(
-                   new Pen(Color.Blue),
+                   new Pen(color),
                    X - Deam / 2,
                    Y - Deam / 2,
                    Deam,

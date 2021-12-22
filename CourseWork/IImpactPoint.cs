@@ -20,7 +20,7 @@ namespace CourseWork
         public virtual void Render(Graphics g)
         {
             g.FillEllipse(
-                    new SolidBrush(Color.White),
+                    new SolidBrush(Color.SandyBrown),
                     X - 5,
                     Y - 5,
                     10,
@@ -63,16 +63,34 @@ namespace CourseWork
 
     public class AntiGravityPoint : IImpactPoint
     {
-        public int Power = 100; // сила отторжения
+        public int Power = 0; // сила отторжения
+
+        public override void Render(Graphics g)
+        {
+            // окружность с диаметром равным Power
+            g.DrawEllipse(
+                   new Pen(Color.Gray),
+                   X - Power / 2,
+                   Y - Power / 2,
+                   Power,
+                   Power
+               );
+        }
 
         public override void ImpactParticle(Particle particle)
         {
             float gX = X - particle.X;
             float gY = Y - particle.Y;
-            float r2 = (float)Math.Max(100, gX * gX + gY * gY);
 
-            particle.SpeedX -= gX * Power / r2; // тут минусики вместо плюсов
-            particle.SpeedY -= gY * Power / r2; // и тут
+            double r = Math.Sqrt(gX * gX + gY * gY); // считаем расстояние от центра точки до центра частицы
+
+            if (r + particle.Radius < Power / 2) // если частица оказалось внутри окружности
+            {
+                // то притягиваем ее
+                float r2 = (float)Math.Max(100, gX * gX + gY * gY);
+                particle.SpeedX -= gX * Power / r2; // тут минусики вместо плюсов
+                particle.SpeedY -= gY * Power / r2; // и тут
+            }
         }
     }
 }
