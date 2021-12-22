@@ -9,6 +9,7 @@ namespace CourseWork
 {
     public class Particle
     {
+
         public int Radius; // радуис частицы
         public float X; // X координата положения частицы в пространстве
         public float Y; // Y координата положения частицы в пространстве
@@ -57,6 +58,7 @@ namespace CourseWork
         // два новых поля под цвет начальный и конечный
         public Color FromColor;
         public Color ToColor;
+
 
         // для смеси цветов
         public static Color MixColor(Color color1, Color color2, float k)

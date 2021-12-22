@@ -51,12 +51,14 @@ namespace CourseWork
             return particle;
         }
 
+
         public void UpdateState()//функция обновления состояния системы
         {
             int particlesToCreate = ParticlesPerTick; // фиксируем счетчик сколько частиц нам создавать за тик
 
             foreach (var particle in particles)
             {
+
                 if (particle.Life < 0)// если здоровье кончилось
                 {
                     //то проверяем надо ли создать частицу
@@ -89,9 +91,12 @@ namespace CourseWork
                             if (portal1 is InPortal)
                             {
                                 if(portal2 is OutPortal)
-                                { 
+                                {
                                     if (portal2.X != -500)
-                                    portal1.Teleportation(particle, portal2);
+                                    {
+                                        portal1.Teleportation(particle, portal2);
+                                        portal2.Teleportation(particle, portal2);
+                                    }
                                 }
                             }
                                 
@@ -153,7 +158,7 @@ namespace CourseWork
             particle.SpeedX = (float)(Math.Cos(direction / 180 * Math.PI) * speed);
             particle.SpeedY = -(float)(Math.Sin(direction / 180 * Math.PI) * speed);
 
-
+            
             particle.Radius = Particle.rnd.Next(RadiusMin, RadiusMax);
         }
     }

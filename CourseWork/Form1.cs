@@ -21,6 +21,8 @@ namespace CourseWork
         InPortal portal1;//поле под первый портал
         OutPortal portal2;//поле под второй портал
 
+
+
         public Form1()
         {
             InitializeComponent();
@@ -41,8 +43,6 @@ namespace CourseWork
 
             emitters.Add(this.emitter); //добавляю в список emitters, чтобы он рендерился и обновлялся
 
-
-
             // антигравитон
             point1 = new AntiGravityPoint // привязываем гравитоны к полям
             {
@@ -59,15 +59,6 @@ namespace CourseWork
             // привязываем поля к эмиттеру
             emitter.impactPoints.Add(point1);
             emitter.impactPoints.Add(point2);
-
-            /*________________________________________________________
-                // антигравитон в центре
-                emitter.impactPoints.Add(new AntiGravityPoint
-                {
-                    X = picDisplay.Width / 2,
-                    Y = picDisplay.Height / 2
-                });
-            ________________________________________________________*/
 
             //порталы
             portal1 = new InPortal 
@@ -90,6 +81,7 @@ namespace CourseWork
 
         private void timer1_Tick(object sender, EventArgs e)
         {
+
             emitter.UpdateState(); // каждый тик обновляем систему
 
             using (var g = Graphics.FromImage(picDisplay.Image))
@@ -173,8 +165,10 @@ namespace CourseWork
         {
             if (colorDialog1.ShowDialog() == DialogResult.OK)
             {
-                button2.BackColor = colorDialog1.Color;
+                portal2.color = colorDialog1.Color;
+
             }
         }
+
     }
 }

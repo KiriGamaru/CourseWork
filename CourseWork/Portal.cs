@@ -51,6 +51,7 @@ namespace CourseWork
                 //то перемещаем её в другой портал
                 particle.X = portal2.X;
                 particle.Y = portal2.Y;
+
             }
         }
     }
@@ -59,7 +60,7 @@ namespace CourseWork
     public class OutPortal : Portal
     {
         public int Deam = 0;
-        public Color color = Color.White;
+        public Color color = Color.White;// цвет портала
         public override void Render(Graphics g)
         {
             // окружность с диаметром равным Deam
@@ -74,7 +75,18 @@ namespace CourseWork
 
         public override void Teleportation(Particle particle, Portal portal)
         {
+            float gX = X - particle.X;
+            float gY = Y - particle.Y;
 
+            double r = Math.Sqrt(gX * gX + gY * gY); // считаем расстояние от центра точки до центра частицы
+
+            if (r + particle.Radius < Deam / 2) // если частица оказалось внутри окружности
+            {
+                //меняем её цвет
+                var newParticle = (ParticleColorful)particle;
+                newParticle.FromColor = color;
+                particle = newParticle;
+            }
         }
     }
 }
