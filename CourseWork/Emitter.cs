@@ -81,7 +81,23 @@ namespace CourseWork
                     particle.SpeedX += GravitationX;
                     particle.SpeedY += GravitationY;
 
-                    
+                    //портал перемещает частицу
+                    foreach (var portal1 in portals)
+                    {
+                        foreach (var portal2 in portals)
+                        {
+                            if (portal1 is InPortal)
+                            {
+                                if(portal2 is OutPortal)
+                                { 
+                                    if (portal2.X != -500)
+                                    portal1.Teleportation(particle, portal2);
+                                }
+                            }
+                                
+                        }
+                    }
+
                 }
             }
 

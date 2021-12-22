@@ -40,11 +40,19 @@ namespace CourseWork
             this.lblSpreading = new System.Windows.Forms.Label();
             this.tbGraviton = new System.Windows.Forms.TrackBar();
             this.tbGraviton2 = new System.Windows.Forms.TrackBar();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.tbPortalSize = new System.Windows.Forms.TrackBar();
+            this.label7 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picDisplay)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbDirection)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbSpreading)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbGraviton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbGraviton2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbPortalSize)).BeginInit();
             this.SuspendLayout();
             // 
             // picDisplay
@@ -65,11 +73,11 @@ namespace CourseWork
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(1419, 946);
+            this.button1.Location = new System.Drawing.Point(1415, 982);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(50, 22);
+            this.button1.Size = new System.Drawing.Size(73, 22);
             this.button1.TabIndex = 1;
-            this.button1.Text = "on/off";
+            this.button1.Text = "вкл/выкл";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -77,15 +85,15 @@ namespace CourseWork
             // 
             this.label1.AutoSize = true;
             this.label1.ForeColor = System.Drawing.SystemColors.Control;
-            this.label1.Location = new System.Drawing.Point(1375, 951);
+            this.label1.Location = new System.Drawing.Point(1412, 961);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(38, 13);
+            this.label1.Size = new System.Drawing.Size(76, 13);
             this.label1.TabIndex = 2;
-            this.label1.Text = "gravity";
+            this.label1.Text = "сила тяжести";
             // 
             // tbDirection
             // 
-            this.tbDirection.Location = new System.Drawing.Point(596, 937);
+            this.tbDirection.Location = new System.Drawing.Point(314, 977);
             this.tbDirection.Maximum = 359;
             this.tbDirection.Name = "tbDirection";
             this.tbDirection.Size = new System.Drawing.Size(297, 45);
@@ -96,7 +104,7 @@ namespace CourseWork
             // 
             this.lblDirection.AutoSize = true;
             this.lblDirection.ForeColor = System.Drawing.SystemColors.Control;
-            this.lblDirection.Location = new System.Drawing.Point(899, 951);
+            this.lblDirection.Location = new System.Drawing.Point(617, 987);
             this.lblDirection.Name = "lblDirection";
             this.lblDirection.Size = new System.Drawing.Size(0, 13);
             this.lblDirection.TabIndex = 4;
@@ -104,7 +112,7 @@ namespace CourseWork
             // tbSpreading
             // 
             this.tbSpreading.LargeChange = 0;
-            this.tbSpreading.Location = new System.Drawing.Point(236, 937);
+            this.tbSpreading.Location = new System.Drawing.Point(12, 977);
             this.tbSpreading.Maximum = 180;
             this.tbSpreading.Name = "tbSpreading";
             this.tbSpreading.Size = new System.Drawing.Size(265, 45);
@@ -115,7 +123,7 @@ namespace CourseWork
             // 
             this.lblSpreading.AutoSize = true;
             this.lblSpreading.ForeColor = System.Drawing.SystemColors.Control;
-            this.lblSpreading.Location = new System.Drawing.Point(507, 946);
+            this.lblSpreading.Location = new System.Drawing.Point(283, 987);
             this.lblSpreading.Name = "lblSpreading";
             this.lblSpreading.Size = new System.Drawing.Size(0, 13);
             this.lblSpreading.TabIndex = 6;
@@ -123,7 +131,7 @@ namespace CourseWork
             // tbGraviton
             // 
             this.tbGraviton.LargeChange = 0;
-            this.tbGraviton.Location = new System.Drawing.Point(980, 937);
+            this.tbGraviton.Location = new System.Drawing.Point(1030, 977);
             this.tbGraviton.Maximum = 500;
             this.tbGraviton.Name = "tbGraviton";
             this.tbGraviton.Size = new System.Drawing.Size(185, 45);
@@ -133,19 +141,95 @@ namespace CourseWork
             // tbGraviton2
             // 
             this.tbGraviton2.LargeChange = 0;
-            this.tbGraviton2.Location = new System.Drawing.Point(1171, 937);
+            this.tbGraviton2.Location = new System.Drawing.Point(1221, 977);
             this.tbGraviton2.Maximum = 500;
             this.tbGraviton2.Name = "tbGraviton2";
             this.tbGraviton2.Size = new System.Drawing.Size(185, 45);
             this.tbGraviton2.TabIndex = 8;
             this.tbGraviton2.Scroll += new System.EventHandler(this.tbGraviton2_Scroll);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(12, 955);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(35, 13);
+            this.label2.TabIndex = 9;
+            this.label2.Text = "label2";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.ForeColor = System.Drawing.SystemColors.Control;
+            this.label3.Location = new System.Drawing.Point(82, 961);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(86, 13);
+            this.label3.TabIndex = 10;
+            this.label3.Text = "разброс частиц";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.ForeColor = System.Drawing.SystemColors.Control;
+            this.label4.Location = new System.Drawing.Point(1058, 961);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(140, 13);
+            this.label4.TabIndex = 11;
+            this.label4.Text = "сила гравитона на экране";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.ForeColor = System.Drawing.SystemColors.Control;
+            this.label5.Location = new System.Drawing.Point(1244, 961);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(145, 13);
+            this.label5.TabIndex = 12;
+            this.label5.Text = "сила гравитона на курсоре";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.ForeColor = System.Drawing.SystemColors.Control;
+            this.label6.Location = new System.Drawing.Point(384, 961);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(166, 13);
+            this.label6.TabIndex = 13;
+            this.label6.Text = "начальное направление частиц";
+            // 
+            // tbPortalSize
+            // 
+            this.tbPortalSize.LargeChange = 0;
+            this.tbPortalSize.Location = new System.Drawing.Point(645, 977);
+            this.tbPortalSize.Maximum = 300;
+            this.tbPortalSize.Name = "tbPortalSize";
+            this.tbPortalSize.Size = new System.Drawing.Size(185, 45);
+            this.tbPortalSize.TabIndex = 14;
+            this.tbPortalSize.Scroll += new System.EventHandler(this.tbPortalSize_Scroll);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.ForeColor = System.Drawing.SystemColors.Control;
+            this.label7.Location = new System.Drawing.Point(695, 961);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(95, 13);
+            this.label7.TabIndex = 15;
+            this.label7.Text = "размер порталов";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.ClientSize = new System.Drawing.Size(1500, 994);
+            this.ClientSize = new System.Drawing.Size(1500, 1034);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.tbPortalSize);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.tbGraviton2);
             this.Controls.Add(this.tbGraviton);
             this.Controls.Add(this.lblSpreading);
@@ -162,6 +246,7 @@ namespace CourseWork
             ((System.ComponentModel.ISupportInitialize)(this.tbSpreading)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbGraviton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbGraviton2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbPortalSize)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -179,6 +264,13 @@ namespace CourseWork
         private System.Windows.Forms.Label lblSpreading;
         private System.Windows.Forms.TrackBar tbGraviton;
         private System.Windows.Forms.TrackBar tbGraviton2;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TrackBar tbPortalSize;
+        private System.Windows.Forms.Label label7;
     }
 }
 

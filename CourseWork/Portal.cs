@@ -13,7 +13,7 @@ namespace CourseWork
         public float Y;
 
         // абстрактный метод с помощью которого будем изменять местоположение частиц 
-        public abstract void Teleportation(Particle particle);
+        public abstract void Teleportation(Particle particle, Portal portal);
 
         // базовый класс для отрисовки портала
         public virtual void Render(Graphics g)
@@ -39,7 +39,7 @@ namespace CourseWork
                );
         }
 
-        public override void Teleportation(Particle particle)
+        public override void Teleportation(Particle particle, Portal portal2)
         {
             float gX = X - particle.X;
             float gY = Y - particle.Y;
@@ -48,7 +48,9 @@ namespace CourseWork
 
             if (r + particle.Radius < Deam / 2) // если частица оказалось внутри окружности
             {
-
+                //то перемещаем её в другой портал
+                particle.X = portal2.X;
+                particle.Y = portal2.Y;
             }
         }
     }
@@ -70,7 +72,7 @@ namespace CourseWork
                );
         }
 
-        public override void Teleportation(Particle particle)
+        public override void Teleportation(Particle particle, Portal portal)
         {
 
         }

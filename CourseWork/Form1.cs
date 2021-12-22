@@ -71,14 +71,14 @@ namespace CourseWork
             //порталы
             portal1 = new InPortal 
             {
-                X = -100,
-                Y = -100
+                X = -500,
+                Y = -500
             };
 
             portal2 = new OutPortal
             {
-                X = -100,
-                Y = -100
+                X = -500,
+                Y = -500
             };
             // привязываем поля к эмиттеру
             emitter.portals.Add(portal1);
@@ -133,13 +133,11 @@ namespace CourseWork
 
         private void picDisplay_MouseMove(object sender, MouseEventArgs e)
         {
-
             foreach (var emitter in emitters)
             {
                 emitter.MousePositionX = e.X;
                 emitter.MousePositionY = e.Y;
             }
-
             // а тут передаем положение мыши, в положение гравитона
             point2.X = e.X;
             point2.Y = e.Y;
@@ -152,18 +150,22 @@ namespace CourseWork
                 emitter.MousePositionX = e.X;
                 emitter.MousePositionY = e.Y;
             }
-
             if (e.Button == MouseButtons.Left)
             {
                 portal1.X = e.X;
                 portal1.Y = e.Y;
             }
-
             else
             {
                 portal2.X = e.X;
                 portal2.Y = e.Y;
             }
+        }
+
+        private void tbPortalSize_Scroll(object sender, EventArgs e)
+        {
+            portal1.Deam = tbPortalSize.Value;
+            portal2.Deam = tbPortalSize.Value;
         }
     }
 }
