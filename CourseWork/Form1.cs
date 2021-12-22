@@ -166,7 +166,7 @@ namespace CourseWork
             if (colorDialog1.ShowDialog() == DialogResult.OK)
             {
                 portal2.color = colorDialog1.Color;
-
+                button2.BackColor = colorDialog1.Color;
             }
         }
 
