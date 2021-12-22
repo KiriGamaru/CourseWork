@@ -68,16 +68,22 @@ namespace CourseWork
                 });
             ________________________________________________________*/
 
-
-            // привязываем порталы к полям
-            portal1 = new InPortal
+            //порталы
+            portal1 = new InPortal 
             {
-                X = MousePositionX,
-                Y = MousePositionY
+                X = -100,
+                Y = -100
             };
 
+            portal2 = new OutPortal
+            {
+                X = -100,
+                Y = -100
+            };
             // привязываем поля к эмиттеру
             emitter.portals.Add(portal1);
+            emitter.portals.Add(portal2);
+
 
         }
 
@@ -125,10 +131,39 @@ namespace CourseWork
             point2.Power = tbGraviton2.Value;
         }
 
+        private void picDisplay_MouseMove(object sender, MouseEventArgs e)
+        {
 
-        // добавляем переменные для хранения положения мыши
-        private int MousePositionX = 0;
-        private int MousePositionY = 0;
+            foreach (var emitter in emitters)
+            {
+                emitter.MousePositionX = e.X;
+                emitter.MousePositionY = e.Y;
+            }
 
+            // а тут передаем положение мыши, в положение гравитона
+            point2.X = e.X;
+            point2.Y = e.Y;
+        }
+
+        private void picDisplay_MouseClick(object sender, MouseEventArgs e)
+        {
+            foreach (var emitter in emitters)
+            {
+                emitter.MousePositionX = e.X;
+                emitter.MousePositionY = e.Y;
+            }
+
+            if (e.Button == MouseButtons.Left)
+            {
+                portal1.X = e.X;
+                portal1.Y = e.Y;
+            }
+
+            else
+            {
+                portal2.X = e.X;
+                portal2.Y = e.Y;
+            }
+        }
     }
 }

@@ -20,7 +20,7 @@ namespace CourseWork
         public virtual void Render(Graphics g)
         {
             g.FillEllipse(
-                    new SolidBrush(Color.LightPink),
+                    new SolidBrush(Color.White),
                     X - 5,
                     Y - 5,
                     10,
@@ -52,7 +52,7 @@ namespace CourseWork
         {
             // окружность с диаметром равным Power
             g.DrawEllipse(
-                   new Pen(Color.Red),
+                   new Pen(Color.White),
                    X - Power / 2,
                    Y - Power / 2,
                    Power,

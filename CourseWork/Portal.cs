@@ -62,7 +62,7 @@ namespace CourseWork
         {
             // окружность с диаметром равным Deam
             g.DrawEllipse(
-                   new Pen(Color.Red),
+                   new Pen(Color.Blue),
                    X - Deam / 2,
                    Y - Deam / 2,
                    Deam,

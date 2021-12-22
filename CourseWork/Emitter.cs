@@ -10,6 +10,8 @@ namespace CourseWork
     public class Emitter
     {
         List<Particle> particles = new List<Particle>();
+        public int MousePositionX;
+        public int MousePositionY;
 
         public int ParticlesCount = 500;//кол-во частиц
 
