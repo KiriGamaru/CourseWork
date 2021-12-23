@@ -18,8 +18,8 @@ namespace CourseWork
         AntiGravityPoint point1; //поле под антигравитон
         GravityPoint point2; //поле под гравитон
 
-        InPortal portal1;//поле под первый портал
-        OutPortal portal2;//поле под второй портал
+        Portal portal1;//поле под первый портал
+        Portal portal2;//поле под второй портал
 
 
 
@@ -56,26 +56,29 @@ namespace CourseWork
                 Y = picDisplay.Height / 2
             };
 
+            //выходной портал
+            portal2 = new Portal
+            {
+                X = -500,
+                Y = -500,
+                InP = false
+            };
+
+            //входной портал
+            portal1 = new Portal
+            {
+                X = -500,
+                Y = -500,
+                InP = true,
+                xOut = portal2.X,
+                yOut = portal2.Y
+            };
+
             // привязываем поля к эмиттеру
             emitter.impactPoints.Add(point1);
             emitter.impactPoints.Add(point2);
-
-            //порталы
-            portal1 = new InPortal 
-            {
-                X = -500,
-                Y = -500
-            };
-
-            portal2 = new OutPortal
-            {
-                X = -500,
-                Y = -500
-            };
-            // привязываем поля к эмиттеру
-            emitter.portals.Add(portal1);
-            emitter.portals.Add(portal2);
-
+            emitter.impactPoints.Add(portal1);
+            emitter.impactPoints.Add(portal2);
 
         }
 
@@ -147,11 +150,14 @@ namespace CourseWork
             {
                 portal1.X = e.X;
                 portal1.Y = e.Y;
+
             }
             else
             {
                 portal2.X = e.X;
                 portal2.Y = e.Y;
+                portal1.xOut = portal2.X;
+                portal1.yOut = portal2.Y;
             }
         }
 

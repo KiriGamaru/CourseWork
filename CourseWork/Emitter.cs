@@ -38,9 +38,8 @@ namespace CourseWork
 
 
 
-        public List<IImpactPoint> impactPoints = new List<IImpactPoint>(); // тут буду хранится точки притяжения
+        public List<IImpactPoint> impactPoints = new List<IImpactPoint>(); // тут буду хранится точки притяжения и отталкивания
 
-        public List<Portal> portals = new List<Portal>();//а тут порталы
 
         public virtual Particle CreateParticle()//метод для генерации частицы
         {
@@ -82,27 +81,6 @@ namespace CourseWork
                     // гравитация воздействует на вектор скорости, поэтому пересчитываем его
                     particle.SpeedX += GravitationX;
                     particle.SpeedY += GravitationY;
-
-                    //портал перемещает частицу
-                    foreach (var portal1 in portals)
-                    {
-                        foreach (var portal2 in portals)
-                        {
-                            if (portal1 is InPortal)
-                            {
-                                if(portal2 is OutPortal)
-                                {
-                                    if (portal2.X != -500)
-                                    {
-                                        portal1.Teleportation(particle, portal2);
-                                        portal2.Teleportation(particle, portal2);
-                                    }
-                                }
-                            }
-                                
-                        }
-                    }
-
                 }
             }
 
@@ -131,12 +109,6 @@ namespace CourseWork
             {
                 point.Render(g);
             }
-
-            // порталы
-            foreach (var portal in portals)
-            {
-                portal.Render(g);
-            }
         }
 
 
@@ -158,7 +130,7 @@ namespace CourseWork
             particle.SpeedX = (float)(Math.Cos(direction / 180 * Math.PI) * speed);
             particle.SpeedY = -(float)(Math.Sin(direction / 180 * Math.PI) * speed);
 
-            
+
             particle.Radius = Particle.rnd.Next(RadiusMin, RadiusMax);
         }
     }
